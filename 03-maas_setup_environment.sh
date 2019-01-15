@@ -73,5 +73,6 @@ done
 sleep 5
 
 #Add zones to MAAS for NUC's
-maas admin zone read zone1 || maas admin zones create name=zone1 description="Physical machines 1-5"
-maas admin zone read zone2 || maas admin zones create name=zone2 description="Physical machines 6-10"
+# These zones only required for LLC with a V4N
+#maas admin zone read zone1 || maas admin zones create name=zone1 description="Physical machines 1-5"
+#maas admin zone read zone2 || maas admin zones create name=zone2 description="Physical machines 6-10"
