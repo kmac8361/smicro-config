@@ -23,13 +23,13 @@ cp /etc/llc-server.conf /etc/orange-box.conf
 apt-get update
 apt-get install -y bridge-utils
 
-# Get interface names of the 3 interfaces on node0 since in Xenial they aren't ethX anymore
+# Get interface names of the 2 interfaces on SuperMicro server since in Xenial they aren't ethX anymore
 # An array is declared and the interface names are placed into the array to be used later on
 #
 declare interface=()
 
 # Added 'eno' for SuperMicro
-for inter_face in $(ip a | awk '{print $2}'|egrep 'enp|enx|eno'|sed 's/://')
+for inter_face in $(ip a | awk '{print $2}'|egrep 'lo|eno'|sed 's/://')
 do
    echo "Interface read $inter_face"
    interface=("${interface[@]}" "$inter_face")
@@ -68,7 +68,6 @@ internal2_ip=172.27.$((llcserver_number+2)).1
 gateway_ip=$gateway1_ip
 
 # Set up the nic variables
-internal0_if="${interface[0]}"
 internal1_if="${interface[1]}"
 internal2_if="${interface[2]}"
 
@@ -100,9 +99,6 @@ setup_networking() {
 	auto lo
 	iface lo inet loopback
 
-	auto $internal0_if
-	iface $internal0_if inet manual
-
 	auto $internal1_if
 	iface $internal1_if inet manual
 
@@ -130,6 +126,7 @@ setup_networking() {
 	    bridge_maxwait 0
 EOF
 
+        exit 0
         # Take down all of the interfaces
         ifdown --force $internal0_if || true
 	ifdown --force $internal1_if || true
