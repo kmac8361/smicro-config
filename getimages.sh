@@ -7,6 +7,7 @@ folder=/srv/data
 URLS="http://cloud-images.ubuntu.com/trusty/current/trusty-server-cloudimg-amd64-disk1.img \
 http://cloud-images.ubuntu.com/trusty/current/trusty-server-cloudimg-amd64-root.tar.gz \
 http://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-disk1.img \
+http://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-root.tar.gz \
 http://mirror.catn.com/pub/catn/images/qcow2/centos6.4-x86_64-gold-master.img \
 http://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud.qcow2 \
 http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img "

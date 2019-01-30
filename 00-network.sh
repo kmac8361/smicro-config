@@ -14,7 +14,7 @@ fi
 obnum=`hostname | cut -c 10- -`
 echo "llcserver_number=${obnum}" > /etc/llc-server.conf
 # For backward compatibility
-echo "orangebox_number=${obnum}" > /etc/llc-server.conf
+echo "orangebox_number=${obnum}" >> /etc/llc-server.conf
 
 #Copy to legacy conf file for backward compatibilit
 cp /etc/llc-server.conf /etc/orange-box.conf
