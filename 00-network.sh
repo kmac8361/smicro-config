@@ -126,7 +126,12 @@ setup_networking() {
 	    bridge_maxwait 0
 EOF
 
+        echo "INFO: /etc/network/interfaces updated. Verify contents and reboot manually"
         exit 0
+
+        # Below is preferred method to update dynamically but until it is stable it is easier to 
+        # just generate interfaces file, verify, and reboot to get interfaces without losing connectivity
+
         # Take down all of the interfaces
         ifdown --force $internal0_if || true
 	ifdown --force $internal1_if || true
@@ -171,6 +176,7 @@ EOF
         fi
 }
 
+echo "Calling setup_networking..."
 setup_networking
 
 exit 0

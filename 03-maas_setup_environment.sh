@@ -72,7 +72,9 @@ echo " Waiting for images to download"
 done
 sleep 5
 
-#Add zones to MAAS for NUC's
-# These zones only required for LLC with a V4N
-#maas admin zone read zone1 || maas admin zones create name=zone1 description="Physical machines 1-5"
-#maas admin zone read zone2 || maas admin zones create name=zone2 description="Physical machines 6-10"
+#Add zones to MAAS for server types
+# These zones only required for LLC 
+maas admin zone read kontron-zone || maas admin zones create name=kontron-zone description="Kontron nodes"
+maas admin zone read asus-zone || maas admin zones create name=asus-zone description="ASUS nodes"
+maas admin zone read hp380-zone || maas admin zones create name=hp380-zone description="HP380 nodes"
+
