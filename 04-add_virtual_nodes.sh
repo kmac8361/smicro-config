@@ -75,15 +75,15 @@ fi
 #Create zone0 for virtual nodes
 maas admin zone read zone0 || maas admin zones create name=zone0 description="Virtual machines on node0"
 
-for i in {0..2}; do
+for i in {0..1}; do
 	hostname="node00vm${i}ob${llcserver_number}.maas"
 	virsh destroy $hostname || true
 	virsh undefine $hostname || true
 	echo "INFO: Installing virtual machine"
         if [ $i = 0 ]; then
-	virt-install --debug --name $hostname --ram 8192 --disk=path=/srv/obvms/${hostname}-1.img,size=20 --disk=path=/srv/obvms/${hostname}-2.img,size=2 --vcpus=2 --os-type=linux --pxe --network=bridge=br0 --network=bridge=br1 --boot network --video=cirrus --graphics vnc|| true
+	virt-install --debug --name $hostname --ram 8192 --disk=path=/srv/obvms/${hostname}-1.img,size=50 --disk=path=/srv/obvms/${hostname}-2.img,size=2 --vcpus=2 --os-type=linux --pxe --network=bridge=br0 --network=bridge=br1 --boot network --video=cirrus --graphics vnc|| true
         else
-	virt-install --debug --name $hostname --ram 8192 --disk=path=/srv/obvms/${hostname}-1.img,size=20 --disk=path=/srv/obvms/${hostname}-2.img,size=2 --vcpus=2 --os-type=linux --pxe --network=bridge=br0 --network=bridge=br1 --boot network --video=cirrus --graphics vnc|| true
+	virt-install --debug --name $hostname --ram 8192 --disk=path=/srv/obvms/${hostname}-1.img,size=30 --disk=path=/srv/obvms/${hostname}-2.img,size=2 --vcpus=2 --os-type=linux --pxe --network=bridge=br0 --network=bridge=br1 --boot network --video=cirrus --graphics vnc|| true
         fi
 	virsh console $hostname || true
 	virsh autostart $hostname
